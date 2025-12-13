@@ -7,6 +7,7 @@ import ConsentCard from './components/ConsentCard';
 import ConsentCreateForm from './components/ConsentCreateForm';
 import EmptyResults from '../_shared/EmptyResults/EmptyResults';
 import ErrorState from '../_shared/ErrorState/ErrorState';
+import Loader from '../_shared/Loader/Loader';
 
 const ConsentManagement = ({ account }) => {
   const { signMessage } = useWeb3();
