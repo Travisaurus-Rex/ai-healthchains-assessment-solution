@@ -1,8 +1,5 @@
 .empty-results {
   width: 100%;
-  background: #f7f7f7;
-  border: 1px solid #d0d0d0;
-  border-radius: 12px;
   padding: 2.5rem 2rem;
   display: flex;
   justify-content: center;

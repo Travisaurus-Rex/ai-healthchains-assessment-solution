@@ -1,28 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import './TransactionHistory.css';
-import { apiService } from '../services/apiService';
+import { apiService } from '../../services/apiService';
+import ErrorState from '../_shared/ErrorState/ErrorState';
+import TransactionList from './components/TransactionList';
 
 const TransactionHistory = ({ account }) => {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // TODO: Implement fetchTransactions function
-  useEffect(() => {
-    const fetchTransactions = async () => {
+  const fetchTransactions = async () => {
       setLoading(true);
+      setError(null);
+
       try {
-        // TODO: Call apiService.getTransactions with account address if available
-        // TODO: Update transactions state
+        const data = await apiService.getTransactions(account);
+
+        setTransactions(
+          Array.isArray(data.transactions) ? data.transactions : []
+        );
       } catch (err) {
-        setError(err.message);
+        setError(err.message || 'Failed to fetch transactions');
       } finally {
         setLoading(false);
       }
     };
 
+  useEffect(() => {
     fetchTransactions();
   }, [account]);
+
 
   const formatAddress = (address) => {
     if (!address) return '';
@@ -30,9 +37,17 @@ const TransactionHistory = ({ account }) => {
   };
 
   const formatDate = (timestamp) => {
-    // TODO: Format the timestamp to a readable date
-    return timestamp;
+    if (!timestamp) return '—';
+
+    return new Date(timestamp).toLocaleString(undefined, {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
   };
+
 
   if (loading) {
     return (
@@ -45,7 +60,11 @@ const TransactionHistory = ({ account }) => {
   if (error) {
     return (
       <div className="transaction-history-container">
-        <div className="error">Error: {error}</div>
+        <ErrorState
+          title="Failed to load transactions"
+          message={error}
+          onRetry={fetchTransactions}
+        />
       </div>
     );
   }
@@ -61,15 +80,14 @@ const TransactionHistory = ({ account }) => {
         )}
       </div>
 
-      {/* TODO: Display transactions list */}
-      {/* Show: type, from, to, amount, currency, status, timestamp, blockchainTxHash */}
       <div className="transactions-list">
-        {/* Your implementation here */}
-        <div className="placeholder">
-          <p>Transaction list will be displayed here</p>
-          <p>Implement the transaction list rendering</p>
-        </div>
+        <TransactionList
+          transactions={transactions}
+          formatAddress={formatAddress}
+          formatDate={formatDate}
+        />
       </div>
+
     </div>
   );
 };
