@@ -3,6 +3,7 @@ import './TransactionHistory.css';
 import { apiService } from '../../services/apiService';
 import ErrorState from '../_shared/ErrorState/ErrorState';
 import TransactionList from './components/TransactionList';
+import Loader from '../_shared/Loader/Loader';
 
 const TransactionHistory = ({ account }) => {
   const [transactions, setTransactions] = useState([]);
@@ -49,13 +50,7 @@ const TransactionHistory = ({ account }) => {
   };
 
 
-  if (loading) {
-    return (
-      <div className="transaction-history-container">
-        <div className="loading">Loading transactions...</div>
-      </div>
-    );
-  }
+  if (loading) return <Loader />;
 
   if (error) {
     return (
