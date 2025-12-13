@@ -49,7 +49,7 @@ const ConsentManagement = ({ account }) => {
     try {
       const message = `I consent to "${formData.purpose}" for patient "${formData.patientId}"`;
       const signature = await signMessage(message);
-      const response = await apiService.createConsent({
+      await apiService.createConsent({
         patientId: formData.patientId,
         purpose: formData.purpose,
         walletAddress: account,
