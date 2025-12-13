@@ -20,8 +20,7 @@ const PatientDetail = ({ patientId, onBack }) => {
           apiService.getPatient(patientId),
           apiService.getPatientRecords(patientId),
         ]);
-        console.log(patientData);
-        console.log(records);
+
         setPatient(patientData);
         setRecords(records);
       } catch (err) {
