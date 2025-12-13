@@ -30,6 +30,28 @@
   border-color: #667eea;
 }
 
+.search-input-wrapper {
+  position: relative;
+}
+
+.search-clear {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: #999;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.search-clear:hover {
+  color: #667eea;
+}
+
 .patient-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -94,6 +116,43 @@
   font-family: 'Courier New', monospace;
   word-break: break-all;
 }
+
+/* Stronger patient identity */
+.patient-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Make ID clearly secondary */
+.patient-id {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+/* Improve info rows */
+.patient-info-item {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+/* De-emphasize labels, emphasize values */
+.patient-info-item strong {
+  font-weight: 500;
+  color: #777;
+  min-width: 70px;
+  display: inline-block;
+}
+
+/* Wallet should feel like metadata */
+.patient-wallet {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-top: 1.25rem;
+}
+
 
 .loading, .error {
   text-align: center;

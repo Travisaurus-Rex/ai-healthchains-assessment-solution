@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './ConsentManagement.css';
 import { apiService } from '../../services/apiService';
 import { useWeb3 } from '../../hooks/useWeb3';
-import ConsentEmptyState from './components/ConsentEmptyState';
 import ConsentErrorState from './components/ConsentErrorState';
 import ConsentFilters from './components/ConsentFilters';
 import ConsentCard from './components/ConsentCard';
 import ConsentCreateForm from './components/ConsentCreateForm';
+import EmptyResults from '../_shared/EmptyResults';
 
 const ConsentManagement = ({ account }) => {
   const { signMessage } = useWeb3();
@@ -131,7 +131,10 @@ const ConsentManagement = ({ account }) => {
 
       <div className="consents-list">
         {!account ? null : consents.length === 0 ? (
-          <ConsentEmptyState />
+          <EmptyResults
+            title="No consents found"
+            description="Try adjusting the filters or creating a new consent."
+          />
         ) : (
           consents.map((consent) => (
             <ConsentCard 

@@ -1,0 +1,27 @@
+.empty-results {
+  width: 100%;
+  background: #f7f7f7;
+  border: 1px solid #d0d0d0;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.empty-results-content {
+  text-align: center;
+  max-width: 480px;
+}
+
+.empty-results-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #6b6b6b;
+  margin-bottom: 0.5rem;
+}
+
+.empty-results-description {
+  font-size: 0.95rem;
+  color: #8a8a8a;
+  line-height: 1.4;
+}
