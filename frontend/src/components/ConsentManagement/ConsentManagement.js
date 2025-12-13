@@ -84,13 +84,7 @@ const ConsentManagement = ({ account }) => {
   };
 
 
-  if (loading) {
-    return (
-      <div className="consent-management-container">
-        <div className="loading">Loading consents...</div>
-      </div>
-    );
-  }
+  if (loading) return <Loader />;
 
   if (error) {
     return (

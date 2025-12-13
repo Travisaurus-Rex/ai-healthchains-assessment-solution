@@ -3,6 +3,7 @@ import './PatientDetail.css';
 import { apiService } from '../../services/apiService';
 import PatientInfoSection from './components/PatientInfoSection';
 import PatientRecordsSection from './components/PatientRecordsSection';
+import Loader from '../_shared/Loader/Loader';
 
 const PatientDetail = ({ patientId, onBack }) => {
   const [patient, setPatient] = useState(null);
@@ -35,13 +36,7 @@ const PatientDetail = ({ patientId, onBack }) => {
     }
   }, [patientId]);
 
-  if (loading) {
-    return (
-      <div className="patient-detail-container">
-        <div className="loading">Loading patient details...</div>
-      </div>
-    );
-  }
+  if (loading) return <Loader />;
 
   if (error || !patient) {
     return (

@@ -5,6 +5,7 @@ import PatientCard from './components/PatientCard';
 import Pagination from './components/Pagination';
 import EmptyResults from '../_shared/EmptyResults/EmptyResults';
 import ErrorState from '../_shared/ErrorState/ErrorState';
+import Loader from '../_shared/Loader/Loader';
 
 const PatientList = ({ onSelectPatient }) => {
   const [patients, setPatients] = useState([]);
@@ -96,7 +97,7 @@ const PatientList = ({ onSelectPatient }) => {
 
 
         {loading ? (
-          <div className="loading">Loading patients...</div>
+          <Loader />
         ) : patients.length === 0 ? (
           <EmptyResults
             title="No patients found"
