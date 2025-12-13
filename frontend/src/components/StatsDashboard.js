@@ -19,7 +19,7 @@ const StatsDashboard = () => {
     } finally {
       setLoading(false);
     }
-  });
+  }, []);
 
   useEffect(() => {
     fetchStats();
