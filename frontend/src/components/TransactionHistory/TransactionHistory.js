@@ -24,7 +24,7 @@ const TransactionHistory = ({ account }) => {
       } finally {
         setLoading(false);
       }
-    });
+    }, [account]);
 
   useEffect(() => {
     fetchTransactions();

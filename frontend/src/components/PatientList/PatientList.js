@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './PatientList.css';
 import { apiService } from '../../services/apiService';
 import PatientCard from './components/PatientCard';
@@ -16,7 +16,7 @@ const PatientList = ({ onSelectPatient }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pagination, setPagination] = useState(null);
 
-  const fetchPatients = async () => {
+  const fetchPatients = useCallback(async () => {
     setLoading(true);
     setError(null);
 
@@ -34,7 +34,7 @@ const PatientList = ({ onSelectPatient }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, searchTerm]);
 
   const handleSearch = (e) => {
     setSearchInput(e.target.value);

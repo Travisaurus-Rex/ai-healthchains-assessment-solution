@@ -32,7 +32,8 @@ const ConsentManagement = ({ account }) => {
     } finally {
       setLoading(false);
     }
-  });
+  }, [filterStatus]);
+
 
   useEffect(() => {
     fetchConsents();
@@ -47,7 +48,7 @@ const ConsentManagement = ({ account }) => {
     }
 
     try {
-      const message = `I consent to "${formData.purpose}" for patient "${formData.patientId}"`;
+      const message = `I consent to: "${formData.purpose}" for patient: "${formData.patientId}"`;
       const signature = await signMessage(message);
       await apiService.createConsent({
         patientId: formData.patientId,
