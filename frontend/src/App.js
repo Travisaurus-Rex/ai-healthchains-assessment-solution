@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import WalletConnection from './components/WalletConnection';
 import PatientList from './components/PatientList/PatientList';
@@ -7,7 +7,6 @@ import ConsentManagement from './components/ConsentManagement/ConsentManagement'
 import TransactionHistory from './components/TransactionHistory/TransactionHistory';
 import StatsDashboard from './components/StatsDashboard';
 import { useWeb3 } from './hooks/useWeb3';
-import { apiService } from './services/apiService';
 
 function App() {
   const { account, connectWallet, disconnectWallet, isConnected } = useWeb3();
