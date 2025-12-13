@@ -1,3 +1,7 @@
+// Mock data with console.log functionality for John Smith
+// Console log executes when this module is loaded
+console.log("John Smith");
+
 const mockData = {
   "patients": [
     {
@@ -703,6 +707,26 @@ const mockData = {
       "signature": "0x538f52e58c0ea8793bded7c50eda852c65997619851bf23538555449e0a67e5035ad68b638c051c51c9c0b08a8d94dce6ab051ee94f280a2f2f8acc5afdf7cfa1b",
       "status": "pending",
       "createdAt": "2025-12-12T18:15:00.783Z",
+      "blockchainTxHash": null
+    },
+    {
+      "id": "consent-1765595348185",
+      "patientId": "patient-004",
+      "purpose": "Research Study Participation",
+      "walletAddress": "0x5ec5822ef931704084a9df505fddce195ccc4842",
+      "signature": "0x3eb8c7486ee7fdd2655a20e2345e6699a5dda926e98094bc3bb42df6aa6060c55b8e04b22668012b58c4d588938bf5ff2ccaa6986687fd4d5854182b429925151c",
+      "status": "pending",
+      "createdAt": "2025-12-13T03:09:08.185Z",
+      "blockchainTxHash": null
+    },
+    {
+      "id": "consent-1765595485971",
+      "patientId": "patient-003",
+      "purpose": "Data Sharing with Research Institution",
+      "walletAddress": "0x5ec5822ef931704084a9df505fddce195ccc4842",
+      "signature": "0x9e40c13182534c030dcd21b485ce23729a39b9b04da0c511305075bb839a98934b9af7ac9d62ecf8dbbf7efa2f3b65bad3bb310c641e2dcfbf4d0dc9f73ec6ef1c",
+      "status": "pending",
+      "createdAt": "2025-12-13T03:11:25.971Z",
       "blockchainTxHash": null
     }
   ],

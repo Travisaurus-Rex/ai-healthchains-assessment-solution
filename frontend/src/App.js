@@ -3,7 +3,7 @@ import './App.css';
 import WalletConnection from './components/WalletConnection';
 import PatientList from './components/PatientList';
 import PatientDetail from './components/PatientDetail';
-import ConsentManagement from './components/ConsentManagement';
+import ConsentManagement from './components/ConsentManagement/ConsentManagement';
 import TransactionHistory from './components/TransactionHistory';
 import StatsDashboard from './components/StatsDashboard';
 import { useWeb3 } from './hooks/useWeb3';
