@@ -20,7 +20,6 @@ const ConsentManagement = ({ account }) => {
     purpose: '',
   });
 
-  // fetchConsents function implemented
   const fetchConsents = async () => {
     setLoading(true);
     try {
@@ -38,7 +37,6 @@ const ConsentManagement = ({ account }) => {
     fetchConsents();
   }, [filterStatus]);
 
-  // createConsent function implemented
   const handleCreateConsent = async (e) => {
     e.preventDefault();
 
@@ -48,13 +46,8 @@ const ConsentManagement = ({ account }) => {
     }
 
     try {
-      // 1. Build a clear, auditable message
       const message = `I consent to "${formData.purpose}" for patient "${formData.patientId}"`;
-
-      // 2. Ask MetaMask to sign it
       const signature = await signMessage(message);
-
-      // 3. Send consent to backend
       const response = await apiService.createConsent({
         patientId: formData.patientId,
         purpose: formData.purpose,
@@ -62,12 +55,10 @@ const ConsentManagement = ({ account }) => {
         signature,
       });
 
-      // 4. Refresh consent list (same logic as fetch)
       const status = filterStatus === 'all' ? null : filterStatus;
       const { consents } = await apiService.getConsents(null, status);
       setConsents(Array.isArray(consents) ? consents : []);
 
-      // 5. Reset UI
       setFormData({ patientId: '', purpose: '' });
       setShowCreateForm(false);
     } catch (err) {
@@ -75,8 +66,6 @@ const ConsentManagement = ({ account }) => {
     }
   };
 
-
-  // updateConsentStatus function implemented
   const handleUpdateStatus = async (consentId, newStatus) => {
     try {
       await apiService.updateConsent(consentId, {
