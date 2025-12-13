@@ -1,12 +1,12 @@
 import './ErrorState.css';
 
-const ErrorState = ({ title, description, onRetry }) => {
+const ErrorState = ({ title, message, onRetry }) => {
   return (
     <div className="error-state">
       <h3 className="error-title">{title}</h3>
 
-      {description && (
-        <p className="error-description">{description}</p>
+      {message && (
+        <p className="error-description">{message}</p>
       )}
 
       {onRetry && (

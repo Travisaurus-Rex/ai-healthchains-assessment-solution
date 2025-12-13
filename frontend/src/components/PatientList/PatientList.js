@@ -4,6 +4,7 @@ import { apiService } from '../../services/apiService';
 import PatientCard from './components/PatientCard';
 import Pagination from './components/Pagination';
 import EmptyResults from '../_shared/EmptyResults/EmptyResults';
+import ErrorState from '../_shared/ErrorState/ErrorState';
 
 const PatientList = ({ onSelectPatient }) => {
   const [patients, setPatients] = useState([]);
@@ -54,7 +55,11 @@ const PatientList = ({ onSelectPatient }) => {
   if (error) {
     return (
       <div className="patient-list-container">
-        <div className="error">Error: {error}</div>
+         <ErrorState
+          title="Failed to load patients"
+          message={error}
+          onRetry={fetchPatients}
+        />
       </div>
     );
   }
