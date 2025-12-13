@@ -1,0 +1,46 @@
+.error-state {
+  max-width: 540px;
+  margin: 4rem auto;
+  padding: 2rem 2.5rem;
+  text-align: center;
+
+  background: #f9fafb;
+  border-radius: 14px;
+
+  /* Gradient border matching header */
+  border: 2px solid transparent;
+  background-image:
+    linear-gradient(#f9fafb, #f9fafb),
+    linear-gradient(135deg, #667eea, #764ba2);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.error-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.error-description {
+  margin: 0 0 1.75rem;
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+.error-retry-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 2rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.error-retry-btn:hover {
+  opacity: 0.9;
+}
+

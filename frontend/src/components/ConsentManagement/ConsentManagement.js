@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './ConsentManagement.css';
 import { apiService } from '../../services/apiService';
 import { useWeb3 } from '../../hooks/useWeb3';
-import ConsentErrorState from './components/ConsentErrorState';
 import ConsentFilters from './components/ConsentFilters';
 import ConsentCard from './components/ConsentCard';
 import ConsentCreateForm from './components/ConsentCreateForm';
-import EmptyResults from '../_shared/EmptyResults';
+import EmptyResults from '../_shared/EmptyResults/EmptyResults';
+import ErrorState from '../_shared/ErrorState/ErrorState';
 
 const ConsentManagement = ({ account }) => {
   const { signMessage } = useWeb3();
@@ -93,9 +93,16 @@ const ConsentManagement = ({ account }) => {
   }
 
   if (error) {
-    return <ConsentErrorState error={error} onRetry={fetchConsents} />
+    return (
+      <div className="consent-management-container">
+        <ErrorState
+          title="Failed to load consents"
+          message={error}
+          onRetry={fetchConsents}
+        />
+      </div>
+    )
   }
-
 
   return (
     <div className="consent-management-container">

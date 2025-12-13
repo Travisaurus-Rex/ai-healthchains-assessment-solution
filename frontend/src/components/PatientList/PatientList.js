@@ -3,7 +3,7 @@ import './PatientList.css';
 import { apiService } from '../../services/apiService';
 import PatientCard from './components/PatientCard';
 import Pagination from './components/Pagination';
-import EmptyResults from '../_shared/EmptyResults';
+import EmptyResults from '../_shared/EmptyResults/EmptyResults';
 
 const PatientList = ({ onSelectPatient }) => {
   const [patients, setPatients] = useState([]);
