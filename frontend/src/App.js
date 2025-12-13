@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import WalletConnection from './components/WalletConnection';
 import PatientList from './components/PatientList/PatientList';
-import PatientDetail from './components/PatientDetail';
+import PatientDetail from './components/PatientDetail/PatientDetail';
 import ConsentManagement from './components/ConsentManagement/ConsentManagement';
 import TransactionHistory from './components/TransactionHistory';
 import StatsDashboard from './components/StatsDashboard';

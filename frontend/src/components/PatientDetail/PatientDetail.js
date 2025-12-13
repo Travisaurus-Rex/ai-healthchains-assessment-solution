@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './PatientDetail.css';
-import { apiService } from '../services/apiService';
+import { apiService } from '../../services/apiService';
+import PatientInfoSection from './components/PatientInfoSection';
+import PatientRecordsSection from './components/PatientRecordsSection';
 
 const PatientDetail = ({ patientId, onBack }) => {
   const [patient, setPatient] = useState(null);
@@ -8,15 +10,20 @@ const PatientDetail = ({ patientId, onBack }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // TODO: Implement fetchPatientData function
-  // This should fetch both patient details and their records
   useEffect(() => {
     const fetchPatientData = async () => {
       setLoading(true);
+      setError(null);
+
       try {
-        // TODO: Fetch patient data using apiService.getPatient(patientId)
-        // TODO: Fetch patient records using apiService.getPatientRecords(patientId)
-        // TODO: Update state with fetched data
+        const [patientData, { records }] = await Promise.all([
+          apiService.getPatient(patientId),
+          apiService.getPatientRecords(patientId),
+        ]);
+        console.log(patientData);
+        console.log(records);
+        setPatient(patientData);
+        setRecords(records);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -53,26 +60,10 @@ const PatientDetail = ({ patientId, onBack }) => {
       </div>
 
       <div className="patient-detail-content">
-        {/* TODO: Display patient information */}
-        {/* Show: name, email, dateOfBirth, gender, phone, address, walletAddress */}
-        <div className="patient-info-section">
-          <h2>Patient Information</h2>
-          {/* Your implementation here */}
-          <div className="placeholder">
-            <p>Display patient information here</p>
-          </div>
-        </div>
-
-        {/* TODO: Display patient records */}
-        {/* Show list of medical records with: type, title, date, doctor, hospital, status */}
-        <div className="patient-records-section">
-          <h2>Medical Records ({records.length})</h2>
-          {/* Your implementation here */}
-          <div className="placeholder">
-            <p>Display medical records here</p>
-          </div>
-        </div>
+        <PatientInfoSection patient={patient} />
+        <PatientRecordsSection records={records} />
       </div>
+
     </div>
   );
 };
