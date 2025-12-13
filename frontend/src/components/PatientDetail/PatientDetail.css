@@ -189,6 +189,21 @@
   font-style: italic;
 }
 
+.record-toggle {
+  margin-left: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #667eea;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.record-toggle:hover {
+  text-decoration: underline;
+}
+
+
 @media (max-width: 768px) {
   .patient-detail-container {
     padding: 1rem;
