@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './StatsDashboard.css';
 import { apiService } from '../services/apiService';
 import ErrorState from './_shared/ErrorState/ErrorState';
@@ -9,7 +9,7 @@ const StatsDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     setLoading(true);
     try {
       const stats = await apiService.getStats();
@@ -19,11 +19,11 @@ const StatsDashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  });
 
   useEffect(() => {
     fetchStats();
-  }, []);
+  }, [fetchStats]);
 
   if (loading) return <Loader />;
 

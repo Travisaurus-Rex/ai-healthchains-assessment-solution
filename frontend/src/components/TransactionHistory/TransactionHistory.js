@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './TransactionHistory.css';
 import { apiService } from '../../services/apiService';
 import ErrorState from '../_shared/ErrorState/ErrorState';
@@ -9,7 +9,7 @@ const TransactionHistory = ({ account }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchTransactions = async () => {
+  const fetchTransactions = useCallback(async () => {
       setLoading(true);
       setError(null);
 
@@ -24,11 +24,11 @@ const TransactionHistory = ({ account }) => {
       } finally {
         setLoading(false);
       }
-    };
+    });
 
   useEffect(() => {
     fetchTransactions();
-  }, [account]);
+  }, [account, fetchTransactions]);
 
 
   const formatAddress = (address) => {

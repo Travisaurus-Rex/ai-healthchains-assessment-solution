@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './PatientList.css';
 import { apiService } from '../../services/apiService';
 import PatientCard from './components/PatientCard';
@@ -42,7 +42,7 @@ const PatientList = ({ onSelectPatient }) => {
 
   useEffect(() => {
     fetchPatients();
-  }, [currentPage, searchTerm]);
+  }, [currentPage, searchTerm, fetchPatients]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {

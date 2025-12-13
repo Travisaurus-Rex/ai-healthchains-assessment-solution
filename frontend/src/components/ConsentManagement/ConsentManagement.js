@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import './ConsentManagement.css';
 import { apiService } from '../../services/apiService';
 import { useWeb3 } from '../../hooks/useWeb3';
@@ -21,7 +21,7 @@ const ConsentManagement = ({ account }) => {
     purpose: '',
   });
 
-  const fetchConsents = async () => {
+  const fetchConsents = useCallback(async () => {
     setLoading(true);
     try {
       const status = filterStatus === 'all' ? null : filterStatus;
@@ -32,11 +32,11 @@ const ConsentManagement = ({ account }) => {
     } finally {
       setLoading(false);
     }
-  };
+  });
 
   useEffect(() => {
     fetchConsents();
-  }, [filterStatus]);
+  }, [filterStatus, fetchConsents]);
 
   const handleCreateConsent = async (e) => {
     e.preventDefault();
