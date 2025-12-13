@@ -514,9 +514,9 @@ const mockData = {
       "purpose": "Third-Party Analytics Access",
       "walletAddress": "0x3f5CE5FBFe3E9af3971dD833D26bA9b5C936f0bE",
       "signature": null,
-      "status": "pending",
+      "status": "active",
       "createdAt": "2024-01-28T09:00:00Z",
-      "blockchainTxHash": null
+      "blockchainTxHash": "0x3a7c71a7"
     },
     {
       "id": "consent-004",
@@ -534,9 +534,9 @@ const mockData = {
       "purpose": "Research Study Participation",
       "walletAddress": "0x21a31Ee1afC51d94C2eFcCAa2092aD1028285549",
       "signature": null,
-      "status": "pending",
+      "status": "active",
       "createdAt": "2024-02-01T16:00:00Z",
-      "blockchainTxHash": null
+      "blockchainTxHash": "0x9e6403b0"
     },
     {
       "id": "consent-006",
