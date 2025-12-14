@@ -1,4 +1,23 @@
+import { useState } from "react";
+import AsyncButton from '../../_shared/AsyncButton/AsyncButton';
+
 const ConsentCard = ({ consent, onActivate }) => {
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleActivate = async () => {
+    setIsUpdating(true);
+    setError(null);
+
+    try {
+      await onActivate(consent.id, 'active');
+    } catch (err) {
+      setError('Failed to activate consent');
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
   return (
     <div className="consent-card">
       <div className="consent-header-info">
@@ -38,12 +57,17 @@ const ConsentCard = ({ consent, onActivate }) => {
 
       {consent.status === 'pending' && (
         <div className="consent-actions">
-          <button
+          <AsyncButton
             className="action-btn primary"
-            onClick={() => onActivate(consent.id, 'active')}
+            onClick={handleActivate}
+            isLoading={isUpdating}
+            loadingText="Activating…"
           >
             Activate
-          </button>
+          </AsyncButton>
+          { error &&
+            <div className="error-text">{error}</div>
+          }
         </div>
       )}
     </div>

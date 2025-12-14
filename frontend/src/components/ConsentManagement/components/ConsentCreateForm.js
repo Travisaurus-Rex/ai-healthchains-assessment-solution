@@ -1,4 +1,6 @@
-const ConsentCreateForm = ({ formData, setFormData, onSubmit }) => {
+import AsyncButton from '../../_shared/AsyncButton/AsyncButton';
+
+const ConsentCreateForm = ({ formData, setFormData, onSubmit, isSubmitting }) => {
   return (
     <div className="create-consent-form">
       <h3>Create New Consent</h3>
@@ -41,9 +43,15 @@ const ConsentCreateForm = ({ formData, setFormData, onSubmit }) => {
           </select>
         </div>
 
-        <button type="submit" className="submit-btn">
-          Sign &amp; Create Consent
-        </button>
+        <AsyncButton
+          className="submit-btn"
+          type="submit"
+          isLoading={isSubmitting}
+          loadingText="Signing…"
+        >
+          Sign & Create Consent
+        </AsyncButton>
+
       </form>
     </div>
   );

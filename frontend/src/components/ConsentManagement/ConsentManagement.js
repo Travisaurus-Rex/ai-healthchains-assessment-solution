@@ -8,10 +8,12 @@ import ConsentCreateForm from './components/ConsentCreateForm';
 import EmptyResults from '../_shared/EmptyResults/EmptyResults';
 import ErrorState from '../_shared/ErrorState/ErrorState';
 import Loader from '../_shared/Loader/Loader';
+import { delay } from '../../utils/apiDelay';
 
 const ConsentManagement = ({ account }) => {
   const { signMessage } = useWeb3();
   const [consents, setConsents] = useState([]);
+  const [creating, setCreating] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filterStatus, setFilterStatus] = useState('all');
@@ -47,6 +49,9 @@ const ConsentManagement = ({ account }) => {
       return;
     }
 
+    setCreating(true);
+    await delay(600); // Artificial delay to surface loading states and validate async UX during development
+
     try {
       const message = `I consent to: "${formData.purpose}" for patient: "${formData.patientId}"`;
       const signature = await signMessage(message);
@@ -65,10 +70,14 @@ const ConsentManagement = ({ account }) => {
       setShowCreateForm(false);
     } catch (err) {
       alert('Failed to create consent: ' + err.message);
+    } finally {
+      setCreating(false);
     }
   };
 
   const handleUpdateStatus = async (consentId, newStatus) => {
+    await delay(600); // Artificial delay to surface loading states and validate async UX during development
+
     try {
       await apiService.updateConsent(consentId, {
         status: newStatus,
@@ -123,6 +132,7 @@ const ConsentManagement = ({ account }) => {
         <ConsentCreateForm
           formData={formData}
           setFormData={setFormData}
+          isSubmitting={creating}
           onSubmit={handleCreateConsent}
         />
       )}
