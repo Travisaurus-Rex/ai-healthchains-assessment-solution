@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import './PatientList.css';
 import { apiService } from '../../services/apiService';
+import PatientSearch from './components/PatientSearch';
 import PatientCard from './components/PatientCard';
 import Pagination from './components/Pagination';
 import EmptyResults from '../_shared/EmptyResults/EmptyResults';
@@ -11,7 +12,6 @@ const PatientList = ({ onSelectPatient }) => {
   const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchInput, setSearchInput] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [pagination, setPagination] = useState(null);
@@ -36,22 +36,9 @@ const PatientList = ({ onSelectPatient }) => {
     }
   }, [currentPage, searchTerm]);
 
-  const handleSearch = (e) => {
-    setSearchInput(e.target.value);
-  };
-
   useEffect(() => {
     fetchPatients();
   }, [currentPage, searchTerm, fetchPatients]);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setCurrentPage(1);       // reset pagination on new search
-      setSearchTerm(searchInput);
-    }, 400); // 300–500ms is standard
-
-    return () => clearTimeout(timeout);
-  }, [searchInput]);
 
   if (error) {
     return (
@@ -69,32 +56,18 @@ const PatientList = ({ onSelectPatient }) => {
     <div className="patient-list-container">
       <div className="patient-list-header">
         <h2>Patients</h2>
-        <div className="search-input-wrapper">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Search patients..."
-            value={searchInput}
-            onChange={handleSearch}
-          />
-
-          {searchInput && (
-            <button
-              type="button"
-              className="search-clear"
-              onClick={() => {
-                setSearchInput('');
-                setSearchTerm('');
-                setCurrentPage(1);
-              }}
-              aria-label="Clear search"
-            >
-              ×
-            </button>
-          )}
-        </div>
+        
+        <PatientSearch
+          onSearch={(term) => {
+            setCurrentPage(1);
+            setSearchTerm(term);
+          }}
+          onClear={() => {
+            setCurrentPage(1);
+            setSearchTerm('');
+          }}
+        />
       </div>
-
 
         {loading ? (
           <Loader />
